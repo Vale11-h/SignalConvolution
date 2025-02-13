@@ -79,3 +79,54 @@ La gráfica obtenida muestra picos positivos y negativos, lo que indica momentos
      • Picos negativos: (Como el de -3.5) Muestran que las señales están "desfasadas" o no coinciden.
 
 Los valores positivos y negativos parecen alternarse, lo que es normal cuando comparamos una señal de coseno con una de seno, ya que siempre están desfasadas 90°, además se observa que la correlación pasa varias veces por el cero, lo que significa que, en esos desplazamientos específicos, las señales no tienen una relación clara ni positiva ni negativa.
+
+### Análisis de la señal.
+
+Para este análisis, se extrajo una señal de electroencefalografía (EEG) de la base de datos PhysioNet, que registra la actividad eléctrica cerebral mediante electrodos en el cuero cabelludo. La señal presenta los siguientes canales disponibles, que corresponden a diferentes ubicaciones del cerebro, permitiendo registrar la actividad de diversas regiones.
+
+- Canales EEG: Fp1, Fp2, F3, F4, F7, F8, T3, T4, C3, C4, T5, T6, P3, P4, O1, O2, Fz, Cz, Pz, A2-A1.
+  
+![e](https://github.com/user-attachments/assets/3c5de83b-da40-4e44-98d6-1f02c289553a)
+>*Señal EEG.*
+
+La frecuencia de muestreo de la señal es de **500 Hz**, lo que significa que se capturan **500 muestras por segundo**, permitiendo un análisis detallado de las oscilaciones neuronales.
+
+#### Estadísticos Descriptivos.
+
+     •  Media:4.89 × 10⁻⁸  Indica que la señal oscila alrededor del cero, lo que es esperado en EEG.
+     •  Desviación estándar: 9.19 × 10⁻⁶  Muestra poca variabilidad, lo que sugiere una señal estable.
+     •  Valor máximo: 5.94 × 10⁻⁵  Amplitud máxima detectada.
+     •  Valor mínimo: -4.52 × 10⁻⁵  Amplitud mínima registrada.
+
+#### Clasificación de la Señal EEG (Canal Fp1).
+
+   - **Analógica** en su origen, ya que la actividad eléctrica del cerebro es continua.  
+   - **Digitalizada**, pues se ha muestreado a 500 Hz para su análisis en el computador.    
+   - **Temporal**, ya que su variación se observa en función del tiempo.  
+   - **No periódica**, debido a que la actividad cerebral es irregular y no se repite de manera predecible.    
+   - **Discreta**, porque se midió en ciertos puntos específicos del tiempo, no de manera continua, es decir se toma un valor cada 2 milisegundos (500 veces por segundo). 
+
+#### Transformada de Fourier y densidad espectral.
+
+![eee](https://github.com/user-attachments/assets/93885e03-c015-463f-907c-89e45a119645)
+>*TF de la señal EEG.*
+
+La Transformada de Fourier (TF) se utiliza para analizar una señal en el dominio de la frecuencia. En la gráfica obtenida, se observa que la mayor parte de la energía se concentra en frecuencias menores a 40 Hz, lo cual es característico de las ondas cerebrales asociadas a estados de reposo, atención y sueño. Los picos evidencian las frecuencias dominantes, lo que facilita la interpretación de la actividad cerebral subyacente.
+
+ ![f](https://github.com/user-attachments/assets/e9721bb8-2cf3-4893-8419-b2f2e121f2f6)
+>*PSD de la señal EEG.*
+
+La Densidad Espectral de Potencia (PSD) permite analizar cómo se distribuye la potencia de la señal EEG en el dominio de la frecuencia. En la gráfica obtenida se observa que las mayores concentraciones de potencia se encuentran en las frecuencias más bajas, con picos significativos alrededor de 2 Hz con un valor aproximado de 2.5 × 10⁻⁸, 5 Hz con 3.0 × 10⁻⁸, siendo este el máximo registrado, y 10 Hz con 1.0 × 10⁻⁸. 
+
+Estos picos corresponden a las bandas de frecuencia asociadas a las ondas delta y theta, que suelen aparecer en estados de relajación o descanso. 
+
+#### Estadísticos descriptivos en función de la frecuencia.
+
+![g](https://github.com/user-attachments/assets/8a92a7da-73ac-42a7-884a-ad5bafef9129)
+>*Estadísticos descriptivos en función de la frecuencia.*
+
+     • Frecuencia media: 8.73 Hz, lo que indica que la señal EEG tiene una mayor concentración de energía en las frecuencias bajas, correspondientes a las bandas delta y theta.
+     • Frecuencia mediana: 10.74 Hz, lo que significa que el 50% de la potencia de la señal se encuentra en frecuencias inferiores a este valor, sugiriendo una actividad predominante en el rango de las ondas alfa.
+     • Desviación estándar: 7.02 Hz, lo que refleja una dispersión moderada de las frecuencias alrededor de la media, lo que es característico de señales EEG en reposo.
+     • Histograma de frecuencias: El histograma muestra una mayor densidad espectral acumulada en las frecuencias más bajas, con una disminución progresiva a medida que aumenta la frecuencia, lo que concuerda con la actividad cerebral típica en estados de relajación.
+     
