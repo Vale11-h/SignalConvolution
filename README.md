@@ -130,3 +130,52 @@ Estos picos corresponden a las bandas de frecuencia asociadas a las ondas delta 
      • Desviación estándar: 7.02 Hz, lo que refleja una dispersión moderada de las frecuencias alrededor de la media, lo que es característico de señales EEG en reposo.
      • Histograma de frecuencias: El histograma muestra una mayor densidad espectral acumulada en las frecuencias más bajas, con una disminución progresiva a medida que aumenta la frecuencia, lo que concuerda con la actividad cerebral típica en estados de relajación.
      
+## Instrucciones
+
+**1. Análisis de correlación y convolución.**
+
+• Se aplicaron las operaciones de correlación y convolución a la señal para identificar patrones y evaluar su comportamiento en el tiempo.
+• La correlación permitió determinar la similitud entre señales, mientras que la convolución ayudó a observar cómo una señal afecta a otra.
+
+- Se utilizó numpy.correlate() y numpy.convolve() para las operaciones correspondientes.
+- Se graficaron los resultados para visualizar la respuesta temporal y su relación con la señal original.
+
+**2. Extracción de datos.**
+
+• Se extrajeron dos conjuntos de datos desde la unidad: .dat y .hea
+
+• Los datos fueron descargados de la fuente original (Physionet) y transferidos a Google Colab.
+
+3. Proceso de análisis:
+
+• La señal se descargó y se llevó a Colab para su procesamiento.
+
+• Todo el análisis se realizó mediante código, lo que permitió evaluar los datos de manera precisa.
+
+- Se carga la señal usando wfdb.rdrecord(), y se extraen los datos de la señal en signal_data.
+
+- Se genera una gráfica para mostrar la señal original utilizando matplotlib.
+
+- Se calculan métricas como la media, la desviación estándar y el coeficiente de variación de los datos. Estos cálculos se realizan tanto de manera predefinida con numpy como manualmente para reforzar la comprensión de los métodos.
+
+- Se calcula el histograma y función de probabilidad tanto manualmente como utilizando la función predefinida para visualizar la distribución de los valores.
+
+- Se genera un ruido gaussiano, de impulso y artefacto, y se agrega a la señal original. Luego, se calcula el Signal-to-Noise Ratio (SNR).
+
+Nota importante: Cada vez que abras el archivo en Google Colab, será necesario cargar nuevamente el archivo de datos. Una vez cargado, podrás acceder al análisis estadístico realizado de dos maneras diferentes, según lo detallado en el código.
+
+4. Parámetros clave:
+
+• Se utilizó la fórmula del SNR (Signal-to-Noise Ratio), que es un parámetro esencial en este análisis.
+
+5. Herramientas y librerías necesarias:
+
+• Se usó Python y un compilador (en este caso, Google Colab).
+
+Requisitos
+
+• Tener Python 3.9 instalado y utilizar Google Colab (o cualquier compilador compatible).
+
+• Tener acceso a los archivos .dat y .hea para cargar en Google Colab o el compilador elegido.
+
+• Contar con las librerías necesarias instaladas para ejecutar el código correctamente (especificadas en el inicio del artículo).
