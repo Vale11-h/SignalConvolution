@@ -14,7 +14,10 @@ Finalmente, se trabajó con una señal electroencefalográfica (EEG) descargada 
 
 ### Convolución.
 
-La convolución es una operación que permite determinar cómo una señal de entrada *x[n]* se transforma al pasar por un sistema descrito por su respuesta al impulso *h[n]*. Consiste en desplazar, multiplicar y sumar los valores de ambas señales, lo que da como resultado la señal de salida *y[n]*.  
+[^1^] La convolución es una operación que permite determinar cómo una señal de entrada *x[n]* se transforma al pasar por un sistema descrito por su respuesta al impulso *h[n]*. Consiste en desplazar, multiplicar y sumar los valores de ambas señales, lo que da como resultado la señal de salida *y[n]*. 
+
+[^1^]: BARGETZ, CHRISTIAN. Convolution of Distribution-Valued Functions. Applications. Rev.colomb.mat. [online]. 2011, vol.45, n.1 [cited  2025-02-13], pp.51-80. Available from: <http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0034-74262011000100005&lng=en&nrm=iso>. ISSN 0034-7426.
+Electronic Document Format(ABNT)
 
 A continuación, se presentan las tres convoluciones realizadas correspondientes a los datos de cada integrante del grupo, comparando los resultados realizados a mano con los obtenidos en Python.
 
@@ -60,7 +63,8 @@ A continuación, se presentan las tres convoluciones realizadas correspondientes
 
 ### Correlación.
 
-La correlación es una operación que permite medir el grado de similitud entre dos señales a lo largo del tiempo. Al comparar *x₁[n]* y *x₂[n]*, se identifica si presentan patrones similares, si están desfasadas o si no guardan relación.
+[^2^] La correlación es una operación que permite medir el grado de similitud entre dos señales a lo largo del tiempo. Al comparar *x₁[n]* y *x₂[n]*, se identifica si presentan patrones similares, si están desfasadas o si no guardan relación.
+[^2^]: Zar, J. 1999. Biostatistical Analysis. 4th Ed. Prentice Hall, New Jersey.
 
 En este procedimiento, se calculó la correlación entre las señales:
 
@@ -111,7 +115,9 @@ La frecuencia de muestreo de la señal es de **500 Hz**, lo que significa que se
 ![eee](https://github.com/user-attachments/assets/93885e03-c015-463f-907c-89e45a119645)
 >*TF de la señal EEG.*
 
-La Transformada de Fourier (TF) se utiliza para analizar una señal en el dominio de la frecuencia. En la gráfica obtenida, se observa que la mayor parte de la energía se concentra en frecuencias menores a 40 Hz, lo cual es característico de las ondas cerebrales asociadas a estados de reposo, atención y sueño. Los picos evidencian las frecuencias dominantes, lo que facilita la interpretación de la actividad cerebral subyacente.
+[^3^]  La Transformada de Fourier (TF) se utiliza para analizar una señal en el dominio de la frecuencia. En la gráfica obtenida, se observa que la mayor parte de la energía se concentra en frecuencias menores a 40 Hz, lo cual es característico de las ondas cerebrales asociadas a estados de reposo, atención y sueño. Los picos evidencian las frecuencias dominantes, lo que facilita la interpretación de la actividad cerebral subyacente.
+
+[^3^]:Coordinación de Ciencias Aplicadas (2019). Programa de estudio matemáticas avanzadas. DCB, FI, UNAM. Recuperado el 17 de junio de 2022, de https://dcb.ingenieria.unam.mx/wp-content/themes/temperachild/CoordinacionesAcademicas/CA/MA/Documentos/Programa2016.pd
 
  ![f](https://github.com/user-attachments/assets/e9721bb8-2cf3-4893-8419-b2f2e121f2f6)
 >*PSD de la señal EEG.*
@@ -132,50 +138,60 @@ Estos picos corresponden a las bandas de frecuencia asociadas a las ondas delta 
      
 ## Instrucciones
 
-**1. Análisis de correlación y convolución.**
+**1. Convolución y correlación.**
 
-• Se aplicaron las operaciones de correlación y convolución a la señal para identificar patrones y evaluar su comportamiento en el tiempo.
-• La correlación permitió determinar la similitud entre señales, mientras que la convolución ayudó a observar cómo una señal afecta a otra.
+• Se aplicaron las operaciones de convolución y correlación a señales específicas para analizar su comportamiento, identificar similitudes y comprender la relación entre ellas.
 
-- Se utilizó numpy.correlate() y numpy.convolve() para las operaciones correspondientes.
-- Se graficaron los resultados para visualizar la respuesta temporal y su relación con la señal original.
+###### Para ello, se utilizaron las funciones np.convolve() y np.correlate() de la librería numpy, aplicándolas a las señales dadas y graficando los resultados con matplotlib.pyplot.
 
-**2. Extracción de datos.**
+**2. Análisis de la señal EEG.**
 
-• Se extrajeron dos conjuntos de datos desde la unidad: .dat y .hea
+• Se extrajo una señal EEG del conjunto de datos proporcionado en PhysioNet utilizando la función wfdb.rdrecord().
+• Se trabajó con uno de los canales disponibles y se almacenaron sus datos en un arreglo para su posterior análisis.
 
-• Los datos fueron descargados de la fuente original (Physionet) y transferidos a Google Colab.
+###### Se calcularon las estadísticas descriptivas: media, mediana, desviación estándar, valor máximo y mínimo, utilizando las funciones np.mean(), np.median(), np.std(), np.max() y np.min().
 
-3. Proceso de análisis:
+• Se determinó la frecuencia de muestreo de la señal (500 Hz), lo que permite capturar 500 muestras por segundo.
 
-• La señal se descargó y se llevó a Colab para su procesamiento.
+###### Se aplicó la Transformada de Fourier para visualizar las componentes de frecuencia presentes en la señal, empleando np.fft.fft() y np.fft.fftfreq().
 
-• Todo el análisis se realizó mediante código, lo que permitió evaluar los datos de manera precisa.
+• Se calculó la densidad espectral de potencia (PSD) con la función scipy.signal.welch() para conocer la distribución de la energía en las distintas frecuencias.
 
-- Se carga la señal usando wfdb.rdrecord(), y se extraen los datos de la señal en signal_data.
+**3. Análisis en función de la frecuencia.**
 
-- Se genera una gráfica para mostrar la señal original utilizando matplotlib.
+• Se calcularon las estadísticas descriptivas relacionadas con la frecuencia: media, mediana, desviación estándar y distribución espectral.
 
-- Se calculan métricas como la media, la desviación estándar y el coeficiente de variación de los datos. Estos cálculos se realizan tanto de manera predefinida con numpy como manualmente para reforzar la comprensión de los métodos.
+###### Utilizando np.mean(), np.median(), np.std().
 
-- Se calcula el histograma y función de probabilidad tanto manualmente como utilizando la función predefinida para visualizar la distribución de los valores.
+• Se construyó un histograma de frecuencias para observar cómo se distribuyen las componentes frecuenciales, utilizando plt.hist().
 
-- Se genera un ruido gaussiano, de impulso y artefacto, y se agrega a la señal original. Luego, se calcula el Signal-to-Noise Ratio (SNR).
+**4. Herramientas utilizadas.**
 
-Nota importante: Cada vez que abras el archivo en Google Colab, será necesario cargar nuevamente el archivo de datos. Una vez cargado, podrás acceder al análisis estadístico realizado de dos maneras diferentes, según lo detallado en el código.
+• Python en Google Colab, utilizando las librerías numpy, matplotlib y scipy para el procesamiento y análisis de la señal.
 
-4. Parámetros clave:
-
-• Se utilizó la fórmula del SNR (Signal-to-Noise Ratio), que es un parámetro esencial en este análisis.
-
-5. Herramientas y librerías necesarias:
-
-• Se usó Python y un compilador (en este caso, Google Colab).
-
-Requisitos
+## Requisitos
 
 • Tener Python 3.9 instalado y utilizar Google Colab (o cualquier compilador compatible).
 
-• Tener acceso a los archivos .dat y .hea para cargar en Google Colab o el compilador elegido.
+• Tener acceso al archivo .edf para cargar en Google Colab o el compilador elegido.
 
 • Contar con las librerías necesarias instaladas para ejecutar el código correctamente (especificadas en el inicio del artículo).
+
+## Usar
+
+Por favor, cite este artículo:
+
+Huertas, V.; Ramírez, P.; Delgado, A. Análisis estadístico de la señal. 13 de febrero de 2025.
+
+## Información de contacto
+
+• est.laurav.huertas@unimilitar.edu.co
+• est.deisy.aramirez@unimilitar.edu.co
+• est.paulav.gomez@unimilitar.edu.co
+
+## Anexo: Ondas Cerebrales
+
+El análisis de la señal EEG implicó el cálculo de diversas variables, como estadísticas descriptivas, Transformada de Fourier y densidad espectral de potencia, las cuales permiten comprender la presencia y distribución de las distintas ondas cerebrales. A continuación, se incluye una imagen que ilustra las principales ondas y sus rangos de frecuencia para contextualizar el estudio realizado.
+
+![h](https://github.com/user-attachments/assets/203bde06-833f-4b37-ad26-58af5ea8cbcf)
+>*Ondas cerebrales.*
